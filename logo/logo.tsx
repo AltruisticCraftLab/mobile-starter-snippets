@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Image, Pressable, Text, View } from 'react-native';
+import { Image, Text, View } from 'react-native';
 
 import { Link } from 'expo-router';
 
@@ -44,12 +44,7 @@ const sizes = {
 // ========================================
 
 const DefaultIcon = ({ className }: { className?: string }) => (
-  <View
-    className={cn(
-      'flex items-center justify-center rounded-lg bg-primary',
-      className
-    )}
-  >
+  <View className={cn('flex items-center justify-center rounded-lg bg-primary', className)}>
     <Text className="text-2xl font-bold text-primary-foreground">
       {BRAND.name.charAt(0).toUpperCase()}
     </Text>
@@ -57,12 +52,7 @@ const DefaultIcon = ({ className }: { className?: string }) => (
 );
 
 // ---------------------- Logo Component ----------------------
-export function Logo({
-  className,
-  size = 'md',
-  showText = true,
-  href = '/',
-}: LogoProps) {
+export function Logo({ className, size = 'md', showText = true, href = '/' }: LogoProps) {
   // ========================================
   // STATE AND HOOKS
   // ========================================
@@ -77,9 +67,7 @@ export function Logo({
 
   // Get image source from logoPath (must be a URL for remote images)
   const imageSource =
-    BRAND.logoPath && BRAND.logoPath.startsWith('http')
-      ? { uri: BRAND.logoPath }
-      : null;
+    BRAND.logoPath && BRAND.logoPath.startsWith('http') ? { uri: BRAND.logoPath } : null;
 
   // ========================================
   // EVENT HANDLERS
@@ -94,17 +82,13 @@ export function Logo({
   // ========================================
 
   return (
-    <Link href={href} asChild>
-      <Pressable
+    <Link href={href} accessibilityLabel={`${BRAND.name} home page`} asChild>
+      <View
         className={cn(
           'flex-row items-center gap-2 rounded-sm sm:gap-3',
           'min-h-11 py-1',
           className
-        )}
-        accessibilityLabel={`${BRAND.name} home page`}
-        accessibilityRole="link"
-        android_ripple={{ color: 'rgba(0,0,0,0.1)' }}
-      >
+        )}>
         {/* Logo Icon/Image - matches Next.js behavior exactly */}
         {imageSource && !imageError ? (
           <Image
@@ -126,15 +110,14 @@ export function Logo({
         {showText && (
           <Text
             className={cn(
-              'leading-tight text-foreground dark:text-foreground-dark',
+              'dark:text-foreground-dark leading-tight text-foreground',
               sizeConfig.text
             )}
-            numberOfLines={1}
-          >
+            numberOfLines={1}>
             {BRAND.name}
           </Text>
         )}
-      </Pressable>
+      </View>
     </Link>
   );
 }
