@@ -1,5 +1,4 @@
-import { useColorScheme } from 'react-native';
-
+import { useColorScheme } from 'nativewind';
 import Svg, { Path } from 'react-native-svg';
 
 interface XProps {
@@ -9,10 +8,9 @@ interface XProps {
 }
 
 export const X = ({ className, size = 20, color }: XProps) => {
-  const colorScheme = useColorScheme();
+  const { colorScheme } = useColorScheme();
 
   // Note: react-native-svg doesn't support CSS variables or NativeWind className for fill/stroke colors.
-  // If you want to match your theme's foreground color exactly, replace the hex values below with the HSL values from your global.css (e.g., 'hsl(230, 16%, 15%)' for light mode)
   const fillColor = color ?? (colorScheme === 'dark' ? '#FFFFFF' : '#000000');
 
   return (
