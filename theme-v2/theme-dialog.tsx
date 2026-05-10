@@ -15,10 +15,10 @@ import { ThemePreference, useTheme } from '@/providers/theme-provider';
 // ========================================
 
 const THEME_OPTIONS = [
-  { value: 'light' as const, label: 'Light', icon: Sun },
-  { value: 'dark' as const, label: 'Dark', icon: Moon },
-  { value: 'system' as const, label: 'System', icon: Monitor },
-];
+  { value: 'light', label: 'Light', icon: Sun },
+  { value: 'dark', label: 'Dark', icon: Moon },
+  { value: 'system', label: 'System', icon: Monitor },
+] as const;
 
 // ========================================
 // TYPES
